@@ -1,8 +1,7 @@
 {
   "name": "health",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Alex Chumak",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
