@@ -1,3 +1,11 @@
 <ion-app>
+  @if (showHeaderFooter) {
+  <health-header></health-header>
+  }
+
   <ion-router-outlet></ion-router-outlet>
+
+  @if (showHeaderFooter) {
+  <health-footer></health-footer>
+  }
 </ion-app>
