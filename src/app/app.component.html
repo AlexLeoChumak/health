@@ -3,7 +3,9 @@
   <health-header></health-header>
   }
 
-  <ion-router-outlet></ion-router-outlet>
+  <div [ngClass]="{ 'margin-top': showHeaderFooter }">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
 
   @if (showHeaderFooter) {
   <health-footer></health-footer>
