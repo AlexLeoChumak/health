@@ -1,3 +1,9 @@
 <ion-datetime-button datetime="datetime" display-format="DD MMMM YYYY HH:mm">
 </ion-datetime-button>
-<ion-datetime (ionChange)="onDateChange($event)" id="datetime"></ion-datetime>
+<ion-datetime
+  (ionChange)="onDateChange($event)"
+  id="datetime"
+  locale="ru-RU"
+  [firstDayOfWeek]="1"
+  ><span slot="time-label">Время</span></ion-datetime
+>
