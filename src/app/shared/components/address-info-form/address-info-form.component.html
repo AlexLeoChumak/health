@@ -1,0 +1,114 @@
+<ion-item-group [formGroup]="addressInfoFormGroup">
+  <ion-item class="section-title">{{ addressTypeProps }} </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="requiredToFill">Область</ion-label>
+    <ion-select formControlName="region" class="margin-top">
+      @for (region of regions; track region) {
+      <ion-select-option>{{ region }}</ion-select-option>
+      }
+    </ion-select>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: addressInfoFormGroup.get('region')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="requiredToFill">Район</ion-label>
+    <ion-input
+      type="text"
+      formControlName="district"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: addressInfoFormGroup.get('district')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="requiredToFill"
+      >Населённый пункт</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="city"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: addressInfoFormGroup.get('city')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="requiredToFill">Улица</ion-label>
+    <ion-input
+      type="text"
+      formControlName="street"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: addressInfoFormGroup.get('street')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="requiredToFill">Дом</ion-label>
+    <ion-input
+      type="number"
+      formControlName="house"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: addressInfoFormGroup.get('house')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating"
+      >Корпус <ion-note>(при наличии)</ion-note></ion-label
+    >
+    <ion-input
+      type="number"
+      formControlName="housing"
+      class="margin-top"
+    ></ion-input>
+  </ion-item>
+
+  @if (showFieldApartmentProps) {
+  <ion-item>
+    <ion-label position="floating"
+      >Квартира <ion-note>(при наличии)</ion-note></ion-label
+    >
+    <ion-input
+      type="number"
+      formControlName="apartment"
+      class="margin-top"
+    ></ion-input>
+  </ion-item>
+  }
+</ion-item-group>
