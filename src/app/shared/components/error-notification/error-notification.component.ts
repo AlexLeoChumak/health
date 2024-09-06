@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IonNote } from '@ionic/angular/standalone';
 
 @Component({
@@ -6,6 +6,7 @@ import { IonNote } from '@ionic/angular/standalone';
   templateUrl: './error-notification.component.html',
   styleUrls: ['./error-notification.component.scss'],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [IonNote],
 })
 export class ErrorNotificationComponent {

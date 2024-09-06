@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { ErrorNotificationComponent } from './error-notification.component';
 
@@ -18,5 +19,30 @@ describe('ErrorNotificationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display default error notification', () => {
+    // Инициализация без изменения значения @Input
+    fixture.detectChanges();
+
+    const errorElement = fixture.debugElement.query(By.css('ion-note'));
+    expect(errorElement).toBeTruthy();
+    expect(errorElement.nativeElement.textContent.trim()).toContain(
+      component.errorNotificationProps
+    );
+  });
+
+  it('should apply the "danger" color to the ion-note', () => {
+    const errorElement = fixture.debugElement.query(By.css('ion-note'));
+    expect(errorElement.attributes['color']).toBe('danger');
+  });
+
+  it('should display error notification sends from parent component', () => {
+    const connectError = 'Ошибка соединения';
+    fixture.componentRef.setInput('errorNotificationProps', connectError);
+    fixture.detectChanges();
+
+    const element = fixture.debugElement.query(By.css('ion-note'));
+    expect(element.nativeElement.textContent.trim()).toContain(connectError);
   });
 });
