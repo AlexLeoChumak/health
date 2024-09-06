@@ -1,4 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonContent,
@@ -11,6 +16,7 @@ import {
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.scss'],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [IonDatetime, FormsModule, IonContent, IonDatetimeButton],
 })
 export class DatepickerComponent {
