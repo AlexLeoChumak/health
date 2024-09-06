@@ -1,0 +1,84 @@
+<ion-item-group [formGroup]="contactInfoFormGroup">
+  <ion-item class="section-title">Контактная информация</ion-item>
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Мобильный номер телефона</ion-label
+    >
+    <ion-input
+      type="tel"
+      formControlName="mobilePhoneNumber"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: contactInfoFormGroup.get('mobilePhoneNumber')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Домашний номер телефона</ion-label>
+    <ion-input
+      type="tel"
+      formControlName="homePhoneNumber"
+      class="margin-top"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Электронная почта</ion-label
+    >
+    <ion-input
+      type="email"
+      formControlName="email"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: contactInfoFormGroup.get('email')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: contactInfoFormGroup.get('email')!,
+        validator: 'email',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.email
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Пароль <ion-note>(не менее 8-ми символов)</ion-note></ion-label
+    >
+    <ion-input
+      type="password"
+      formControlName="password"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: contactInfoFormGroup.get('password')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: contactInfoFormGroup.get('password')!,
+        validator: 'minlength',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.minlength
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+</ion-item-group>
