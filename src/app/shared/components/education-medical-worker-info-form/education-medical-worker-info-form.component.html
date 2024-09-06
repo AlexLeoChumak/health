@@ -1,0 +1,144 @@
+<ion-item-group [formGroup]="educationMedicalWorkerInfoFormGroup">
+  <ion-item class="section-title">Медицинское образование</ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Наименование учреждения образования</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="nameEducationalInstitution"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: educationMedicalWorkerInfoFormGroup.get(
+          'nameEducationalInstitution'
+        )!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Факультет</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="faculty"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: educationMedicalWorkerInfoFormGroup.get('faculty')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Специальность</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="speciality"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: educationMedicalWorkerInfoFormGroup.get('speciality')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Специализация</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="specialization"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: educationMedicalWorkerInfoFormGroup.get('specialization')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Номер диплома о высшем медицинском образовании</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="numberDiplomaHigherMedicalEducation"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: educationMedicalWorkerInfoFormGroup.get(
+          'numberDiplomaHigherMedicalEducation'
+        )!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Номер лицензии на право осуществления медицинской деятельности</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="licenseNumberMedicalActivities"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: educationMedicalWorkerInfoFormGroup.get(
+          'licenseNumberMedicalActivities'
+        )!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Номер сертификата специалиста</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="specialistCertificateNumber"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: educationMedicalWorkerInfoFormGroup.get(
+          'specialistCertificateNumber'
+        )!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+</ion-item-group>
