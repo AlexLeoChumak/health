@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { AddressInfoFormComponent } from './address-info-form.component';
-import { By } from '@angular/platform-browser';
 
 describe('AddressInfoFormComponent', () => {
   let component: AddressInfoFormComponent;
@@ -58,7 +58,7 @@ describe('AddressInfoFormComponent', () => {
     component.addressInfoFormGroup.markAllAsTouched();
     fixture.detectChanges();
 
-    const errors = fixture.debugElement.queryAll(By.css('.requiredToFill'));
+    const errors = fixture.debugElement.queryAll(By.css('.required-to-fill'));
     expect(errors.length).toBeGreaterThan(0);
   });
 
@@ -73,8 +73,8 @@ describe('AddressInfoFormComponent', () => {
     expect(options.length).toBe(regions.length);
   });
 
-  it('should display apartment field when showFieldApartmentProps is true', () => {
-    fixture.componentRef.setInput('showFieldApartmentProps', true);
+  it('should display apartment field when "addressTypeProps" is "Адрес регистрации"', () => {
+    fixture.componentRef.setInput('addressTypeProps', 'Адрес регистрации');
     fixture.detectChanges();
 
     const apartmentField = fixture.debugElement.query(
@@ -83,13 +83,21 @@ describe('AddressInfoFormComponent', () => {
     expect(apartmentField).toBeTruthy();
   });
 
-  it('should hide apartment field when showFieldApartmentProps is false', () => {
-    fixture.componentRef.setInput('showFieldApartmentProps', false);
+  it('should hide apartment field when "addressTypeProps" is "Адрес места работы"', () => {
+    fixture.componentRef.setInput('addressTypeProps', 'Адрес места работы');
     fixture.detectChanges();
 
     const apartmentField = fixture.debugElement.query(
       By.css('ion-input[formControlName="apartment"]')
     );
     expect(apartmentField).toBeFalsy();
+  });
+
+  it('should emit formReady event with form group when initialized', () => {
+    spyOn(component.formReady, 'emit');
+    component.ngOnInit();
+    expect(component.formReady.emit).toHaveBeenCalledWith(
+      component.addressInfoFormGroup
+    );
   });
 });

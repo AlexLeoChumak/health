@@ -1,11 +1,13 @@
 <ion-item-group [formGroup]="addressInfoFormGroup">
-  <ion-item class="section-title">{{ addressTypeProps }} </ion-item>
+  <ion-item class="section-title">{{ addressTypeProps() }} </ion-item>
 
   <ion-item>
-    <ion-label position="floating" class="requiredToFill">Область</ion-label>
+    <ion-label position="floating" class="required-to-fill">Область</ion-label>
     <ion-select formControlName="region" class="margin-top">
       @for (region of regions; track region) {
       <ion-select-option>{{ region }}</ion-select-option>
+      } @empty {
+      <ion-select-option>Беларусь</ion-select-option>
       }
     </ion-select>
 
@@ -19,7 +21,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating" class="requiredToFill">Район</ion-label>
+    <ion-label position="floating" class="required-to-fill">Район</ion-label>
     <ion-input
       type="text"
       formControlName="district"
@@ -36,7 +38,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating" class="requiredToFill"
+    <ion-label position="floating" class="required-to-fill"
       >Населённый пункт</ion-label
     >
     <ion-input
@@ -55,7 +57,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating" class="requiredToFill">Улица</ion-label>
+    <ion-label position="floating" class="required-to-fill">Улица</ion-label>
     <ion-input
       type="text"
       formControlName="street"
@@ -72,7 +74,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating" class="requiredToFill">Дом</ion-label>
+    <ion-label position="floating" class="required-to-fill">Дом</ion-label>
     <ion-input
       type="number"
       formControlName="house"
@@ -99,7 +101,7 @@
     ></ion-input>
   </ion-item>
 
-  @if (showFieldApartmentProps) {
+  @if (addressTypeProps() !== 'Адрес места работы') {
   <ion-item>
     <ion-label position="floating"
       >Квартира <ion-note>(при наличии)</ion-note></ion-label

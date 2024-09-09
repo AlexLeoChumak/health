@@ -2,10 +2,9 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
+  input,
   OnInit,
-  Output,
+  output,
 } from '@angular/core';
 import {
   FormGroup,
@@ -39,7 +38,12 @@ import {
 } from '@ionic/angular/standalone';
 
 import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
-import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
+import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/shared/constants/form-validation-error-messages.constant';
+
+type addressPropsType =
+  | 'Адрес регистрации'
+  | 'Адрес фактического проживания'
+  | 'Адрес места работы';
 
 @Component({
   selector: 'health-address-info-form',
@@ -76,9 +80,8 @@ import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/
   ],
 })
 export class AddressInfoFormComponent implements OnInit {
-  @Input() addressTypeProps: string = '';
-  @Input() showFieldApartmentProps: boolean = true;
-  @Output() formReady = new EventEmitter<FormGroup>();
+  addressTypeProps = input<addressPropsType>();
+  formReady = output<FormGroup>();
 
   addressInfoFormGroup!: FormGroup;
   FORM_VALIDATION_ERROR_MESSAGES = FORM_VALIDATION_ERROR_MESSAGES;
