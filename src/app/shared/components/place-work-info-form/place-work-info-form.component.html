@@ -1,0 +1,60 @@
+<ion-item-group [formGroup]="placeWorkInfoFormGroup">
+  <ion-item class="section-title">Место работы</ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Наименование медицинского учреждения</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="nameMedicalInstitution"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: placeWorkInfoFormGroup.get('nameMedicalInstitution')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Отделение</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="department"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: placeWorkInfoFormGroup.get('department')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Текущая специализация</ion-label
+    >
+    <ion-input
+      type="text"
+      formControlName="currentSpecialization"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: placeWorkInfoFormGroup.get('currentSpecialization')!,
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+</ion-item-group>
