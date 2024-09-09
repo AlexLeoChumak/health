@@ -1,9 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
-  Output,
+  input,
+  output,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonButton } from '@ionic/angular/standalone';
@@ -31,17 +30,17 @@ interface ActionButtonConfigInterface {
   imports: [RouterModule, IonButton],
 })
 export class ActionButtonComponent {
-  @Input() configProps: ActionButtonConfigInterface = {
+  configProps = input<ActionButtonConfigInterface>({
     label: 'войти',
     isFormButton: true,
     isDisabled: true,
     routerLink: null,
-  };
+  });
 
-  @Output() action = new EventEmitter<void>();
+  action = output<void>();
 
   handleClick(): void {
-    if (this.configProps.routerLink === null) {
+    if (this.configProps().routerLink === null) {
       this.action.emit();
     }
   }

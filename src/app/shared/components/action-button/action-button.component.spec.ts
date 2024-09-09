@@ -32,17 +32,6 @@ describe('ActionButtonComponent', () => {
   });
 
   it('should display the correct label on the button', () => {
-    // Вместо этой записи использована запись ниже,
-    // где используется fixture.componentRef.setInput из-за
-    // ChangeDetectionStrategy.OnPush в компоненте
-    //
-    // component.configProps = {
-    //   label: 'зарегистрироваться',
-    //   isFormButton: true,
-    //   isDisabled: false,
-    //   routerLink: null,
-    // };
-
     fixture.componentRef.setInput('configProps', {
       label: 'зарегистрироваться',
       isFormButton: true,
