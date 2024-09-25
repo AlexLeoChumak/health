@@ -1,0 +1,95 @@
+<ion-item-group>
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Укажите государство, чьим гражданином являетесь</ion-label
+    >
+    <ion-input
+      type="text"
+      [formControl]="controls['nameStateForeignCitizen']"
+      class="margin-top"
+    ></ion-input>
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: controls['nameStateForeignCitizen'],
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Наименование документа, удостоверяющего личность</ion-label
+    >
+    <ion-input
+      type="text"
+      [formControl]="controls['documentName']"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: controls['documentName'],
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Номер документа, удостоверяющего личность</ion-label
+    >
+    <ion-input
+      type="text"
+      [formControl]="controls['documentNumber']"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: controls['documentNumber'],
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Наименование компании - медицинского страховщика</ion-label
+    >
+    <ion-input
+      type="text"
+      [formControl]="controls['nameInsuranceCompany']"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: controls['nameInsuranceCompany'],
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Номер договора медицинского страхования</ion-label
+    >
+    <ion-input
+      type="text"
+      [formControl]="controls['healthInsuranceContractNumber']"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: controls['healthInsuranceContractNumber'],
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+</ion-item-group>

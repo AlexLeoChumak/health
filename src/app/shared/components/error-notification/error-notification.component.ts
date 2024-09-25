@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { IonNote } from '@ionic/angular/standalone';
 
 @Component({
@@ -10,5 +10,5 @@ import { IonNote } from '@ionic/angular/standalone';
   imports: [IonNote],
 })
 export class ErrorNotificationComponent {
-  @Input() errorNotificationProps: string = 'Некорректные данные';
+  errorNotificationProps = input<string>();
 }

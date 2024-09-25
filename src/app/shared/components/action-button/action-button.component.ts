@@ -7,12 +7,15 @@ import {
 import { RouterModule } from '@angular/router';
 import { IonButton } from '@ionic/angular/standalone';
 
-type LabelButtonType =
+export type LabelButtonType =
   | 'войти'
   | 'зарегистрироваться'
   | 'обновить данные'
   | 'пациент'
-  | 'медработник';
+  | 'медработник'
+  | 'выбрать фото'
+  | 'показать календарь'
+  | 'скрыть календарь';
 
 interface ActionButtonConfigInterface {
   label: LabelButtonType;

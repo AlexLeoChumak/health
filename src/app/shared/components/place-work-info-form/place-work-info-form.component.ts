@@ -19,7 +19,7 @@ import {
   IonInput,
 } from '@ionic/angular/standalone';
 
-import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/shared/constants/form-validation-error-messages.constant';
+import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
 import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 import { AddressInfoFormComponent } from 'src/app/shared/components/address-info-form/address-info-form.component';
 import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';

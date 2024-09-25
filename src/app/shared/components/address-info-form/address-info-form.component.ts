@@ -38,7 +38,7 @@ import {
 } from '@ionic/angular/standalone';
 
 import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
-import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/shared/constants/form-validation-error-messages.constant';
+import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
 
 type addressPropsType =
   | 'Адрес регистрации'

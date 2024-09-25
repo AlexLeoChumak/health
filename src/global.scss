@@ -31,16 +31,127 @@
  * For more info, please see:
  * https://ionicframework.com/docs/theming/dark-mode
  */
-
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+// @import "@ionic/angular/css/palettes/dark.system.css";
 
-.label-floating.sc-ion-label-md-h {
-  margin-bottom: var(--ion-label-margin-bottom);
+/* Внутренний импорт из файла variables.scss */
+@import "theme/variables.scss";
+
+@font-face {
+  font-family: #{$font-family-base};
+  src: url("./theme/fonts/montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-weight: #{$font-weight-normal};
+  font-style: #{$font-style-normal};
 }
 
-.requiredToFill::after {
+@font-face {
+  font-family: #{$font-family-base};
+  src: url("./theme/fonts/montserrat/Montserrat-Bold.ttf") format("truetype");
+  font-weight: #{$font-weight-bold};
+  font-style: #{$font-style-normal};
+}
+
+/* Применение переменных */
+:root {
+  /* Цвета */
+  --ion-color-primary: #{$primary-color};
+  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3171e0;
+  --ion-color-primary-tint: #4c8dff;
+
+  --ion-color-secondary: #{$secondary-color};
+  --ion-color-secondary-rgb: 61, 194, 255;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #36abe0;
+  --ion-color-secondary-tint: #50c8ff;
+
+  --ion-color-tertiary: #{$tertiary-color};
+  --ion-color-tertiary-rgb: 82, 96, 255;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #4853e0;
+  --ion-color-tertiary-tint: #6370ff;
+
+  --ion-color-success: #{$success-color};
+  --ion-color-success-rgb: 45, 211, 111;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #28ba62;
+  --ion-color-success-tint: #42d77d;
+
+  --ion-color-warning: #{$warning-color};
+  --ion-color-warning-rgb: 255, 196, 9;
+  --ion-color-warning-contrast: #ffffff;
+  --ion-color-warning-contrast-rgb: 255, 255, 255;
+  --ion-color-warning-shade: #e0ac08;
+  --ion-color-warning-tint: #ffca22;
+
+  --ion-color-danger: #{$danger-color};
+  --ion-color-danger-rgb: 235, 68, 90;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #cf3c4f;
+  --ion-color-danger-tint: #ed576b;
+
+  --ion-color-dark: #{$dark-color};
+  --ion-color-dark-rgb: 34, 36, 40;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
+
+  --ion-color-medium: #{$medium-color};
+  --ion-color-medium-rgb: 146, 148, 156;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #808289;
+  --ion-color-medium-tint: #9d9fa6;
+
+  --ion-color-light: #{$light-color};
+  --ion-color-light-rgb: 244, 245, 248;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
+
+  /* Шрифты */
+  --ion-font-family: #{$font-family-base};
+  --ion-font-size: #{$font-size-base};
+  --ion-font-weight-normal: #{$font-weight-normal};
+  --ion-font-weight-bold: #{$font-weight-bold};
+
+  /* CSS переменные для переопределения нативных CSS значений Ionic */
+  /* Размеры */
+  --ion-margin: 25px;
+  --ion-size-preview-photo: 250px;
+  --ion-border-radius-preview-photo: 10px;
+}
+
+.container {
+  max-width: #{$container-max-width};
+  width: #{$container-width};
+  margin: #{$margin-center};
+}
+
+.section-title {
+  font-size: #{$font-size-lg};
+  font-weight: #{$font-weight-bold};
+}
+
+.margin-top {
+  margin-top: #{$margin-10px};
+}
+
+.required-to-fill::after {
   content: " *";
-  color: red;
+  color: #{$danger-color};
+}
+
+health-validator-form-control,
+health-error-notification {
+  margin-bottom: 6px;
 }

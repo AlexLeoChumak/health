@@ -1,13 +1,13 @@
 <ion-app>
-  @if (showHeaderFooter) {
+  @if (showHeaderFooter()) {
   <health-header></health-header>
   }
 
-  <div [ngClass]="{ 'margin-top': showHeaderFooter }">
+  <div [ngClass]="{ 'margin-top': showHeaderFooter() }">
     <ion-router-outlet></ion-router-outlet>
   </div>
 
-  @if (showHeaderFooter) {
+  @if (showHeaderFooter()) {
   <health-footer></health-footer>
   }
 </ion-app>

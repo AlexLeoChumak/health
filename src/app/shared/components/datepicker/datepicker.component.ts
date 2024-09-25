@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   IonContent,
@@ -20,7 +15,7 @@ import {
   imports: [IonDatetime, FormsModule, IonContent, IonDatetimeButton],
 })
 export class DatepickerComponent {
-  @Output() dateChange = new EventEmitter<string>();
+  dateChange = output<string>();
 
   onDateChange(event: CustomEvent): void {
     const selectedDate: string = event.detail.value;

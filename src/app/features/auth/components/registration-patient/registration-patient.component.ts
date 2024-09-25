@@ -15,6 +15,8 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonItemGroup,
+  IonToast,
 } from '@ionic/angular/standalone';
 
 import { RegistrationBaseComponent } from 'src/app/features/auth/components/registration-base/registration-base.component';
@@ -27,7 +29,6 @@ import { PlaceWorkInfoFormComponent } from 'src/app/shared/components/place-work
 import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
 import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 import { ActionButtonComponent } from 'src/app/shared/components/action-button/action-button.component';
-import { PatientInterface } from 'src/app/shared/models/patient.interface';
 
 @Component({
   selector: 'health-registration-patient',
@@ -36,6 +37,8 @@ import { PatientInterface } from 'src/app/shared/models/patient.interface';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    IonToast,
+    IonItemGroup,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -73,10 +76,5 @@ export class RegistrationPatientComponent
 
   ngOnInit(): void {
     this.initializeForm();
-  }
-
-  onSubmitForm(): void {
-    const user: PatientInterface = this.registrationForm.value;
-    console.log('patient', user);
   }
 }

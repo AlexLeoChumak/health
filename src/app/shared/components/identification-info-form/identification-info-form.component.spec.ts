@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 
 import { IdentificationInfoFormComponent } from './identification-info-form.component';
-import { FormControl } from '@angular/forms';
 
 describe('IdentificationInfoFormComponent', () => {
   let component: IdentificationInfoFormComponent;

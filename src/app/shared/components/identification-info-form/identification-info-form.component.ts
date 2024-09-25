@@ -1,9 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   OnInit,
-  Output,
+  output,
   signal,
 } from '@angular/core';
 import {
@@ -56,7 +55,7 @@ import { IdentificationInfoFormForCitizensBelarusComponent } from 'src/app/share
   ],
 })
 export class IdentificationInfoFormComponent implements OnInit {
-  @Output() formReady = new EventEmitter<FormGroup>();
+  formReady = output<FormGroup>();
 
   identificationInfoFormGroup!: FormGroup;
   userCitizenshipSignal = signal<string>('Республика Беларусь');

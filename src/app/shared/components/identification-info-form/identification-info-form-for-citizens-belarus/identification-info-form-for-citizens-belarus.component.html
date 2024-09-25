@@ -1,0 +1,94 @@
+<ion-item-group>
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Идентификационный личный номер
+      <ion-note>(14 символов)</ion-note></ion-label
+    >
+    <ion-input
+      type="text"
+      [formControl]="controls['personalIdentificationNumber']"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: controls['personalIdentificationNumber'],
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Серия и номер паспорта
+      <ion-note>(использовать латинские символы)</ion-note></ion-label
+    >
+    <ion-input
+      type="text"
+      [formControl]="controls['passportSeriesNumber']"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: controls['passportSeriesNumber'],
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Дата выдачи паспорта
+      <ion-note>(выберите в календаре)</ion-note></ion-label
+    >
+
+    <ion-input
+      type="text"
+      [formControl]="controls['passportIssueDate']"
+      class="margin-top"
+    ></ion-input>
+
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: controls['passportIssueDate'],
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+
+    <health-action-button
+      (click)="toggleDatepicker()"
+      [configProps]="{
+    label: datepickerButtonLabel,
+    isFormButton: false,
+    isDisabled: false,
+    routerLink: null,
+}"
+    ></health-action-button>
+  </ion-item>
+
+  @if (isDatepickerOpen()) {
+  <health-datepicker (dateChange)="onDateChange($event)"></health-datepicker>
+  }
+
+  <ion-item>
+    <ion-label position="floating" class="required-to-fill"
+      >Орган, выдавший паспорт</ion-label
+    >
+    <ion-input
+      type="text"
+      [formControl]="controls['passportIssuingAuthority']"
+      class="margin-top"
+    ></ion-input>
+    <health-validator-form-control
+      [validatorFormControlProps]="{
+        control: controls['passportIssuingAuthority'],
+        validator: 'required',
+        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
+      }"
+    ></health-validator-form-control>
+  </ion-item>
+</ion-item-group>

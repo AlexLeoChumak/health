@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { filter } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 
 import { HeaderComponent } from 'src/app/shared/components/header/header.component';
 import { FooterComponent } from 'src/app/shared/components/footer/footer.component';
@@ -11,22 +12,36 @@ import { FooterComponent } from 'src/app/shared/components/footer/footer.compone
   templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [IonApp, IonRouterOutlet, HeaderComponent, FooterComponent],
+  imports: [
+    CommonModule,
+    IonApp,
+    IonRouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+  ],
 })
-export class AppComponent implements OnInit {
-  showHeaderFooter: boolean = true;
+export class AppComponent implements OnInit, OnDestroy {
+  showHeaderFooter = signal<boolean>(true);
+  private router = inject(Router);
+  private routerSubscription!: Subscription;
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.router.events
+    this.routerSubscription = this.router.events
       .pipe(
         filter(
           (event): event is NavigationEnd => event instanceof NavigationEnd
         )
       )
       .subscribe((event: NavigationEnd) => {
-        this.showHeaderFooter = !event.url.includes('auth');
+        this.showHeaderFooter.set(
+          !event.url.includes('login') && !event.url.includes('registration')
+        );
       });
+  }
+
+  ngOnDestroy(): void {
+    this.routerSubscription ? this.routerSubscription.unsubscribe() : null;
   }
 }

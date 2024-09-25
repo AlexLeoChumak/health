@@ -1,16 +1,66 @@
-import { TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NavigationEnd, provideRouter, Router } from '@angular/router';
+import { of, Subscription } from 'rxjs';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  it('should create the app', async () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let router: Router;
+
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [provideRouter([])]
+      providers: [provideRouter([])], // Simulating router
     }).compileComponents();
-    
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    router = TestBed.inject(Router);
+  });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should show header/footer on non-login/registration routes', () => {
+    spyOn(router.events, 'pipe').and.returnValue(
+      of(new NavigationEnd(0, '/home', '/home'))
+    );
+
+    component.ngOnInit();
+
+    expect(component.showHeaderFooter()).toBeTrue();
+  });
+
+  it('should hide header/footer on login route', () => {
+    spyOn(router.events, 'pipe').and.returnValue(
+      of(new NavigationEnd(0, '/login', '/login'))
+    );
+
+    component.ngOnInit();
+
+    expect(component.showHeaderFooter()).toBeFalse();
+  });
+
+  it('should hide header/footer on registration route', () => {
+    spyOn(router.events, 'pipe').and.returnValue(
+      of(new NavigationEnd(0, '/registration', '/registration'))
+    );
+
+    component.ngOnInit();
+
+    expect(component.showHeaderFooter()).toBeFalse();
+  });
+
+  it('should unsubscribe from router events on destroy', () => {
+    const subscription = new Subscription();
+    component['routerSubscription'] = subscription;
+    spyOn(subscription, 'unsubscribe');
+
+    component.ngOnDestroy();
+
+    expect(subscription.unsubscribe).toHaveBeenCalled();
   });
 });

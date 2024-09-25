@@ -1,5 +1,5 @@
 import { AbstractControl } from '@angular/forms';
-import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/shared/constants/form-validation-error-messages.constant';
+import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
 
 type ValidatorType = keyof typeof FORM_VALIDATION_ERROR_MESSAGES;
 

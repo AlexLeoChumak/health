@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   OnInit,
-  Output,
+  output,
 } from '@angular/core';
 import {
   FormGroup,
@@ -77,7 +76,7 @@ import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/
   ],
 })
 export class ContactInfoFormComponent implements OnInit {
-  @Output() formReady = new EventEmitter<FormGroup>();
+  formReady = output<FormGroup>();
 
   contactInfoFormGroup!: FormGroup;
   FORM_VALIDATION_ERROR_MESSAGES = FORM_VALIDATION_ERROR_MESSAGES;

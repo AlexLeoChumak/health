@@ -21,17 +21,6 @@ describe('ErrorNotificationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display default error notification', () => {
-    // Инициализация без изменения значения @Input
-    fixture.detectChanges();
-
-    const errorElement = fixture.debugElement.query(By.css('ion-note'));
-    expect(errorElement).toBeTruthy();
-    expect(errorElement.nativeElement.textContent.trim()).toContain(
-      component.errorNotificationProps
-    );
-  });
-
   it('should apply the "danger" color to the ion-note', () => {
     const errorElement = fixture.debugElement.query(By.css('ion-note'));
     expect(errorElement.attributes['color']).toBe('danger');

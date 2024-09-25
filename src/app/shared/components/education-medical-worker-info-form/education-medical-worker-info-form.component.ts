@@ -1,9 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   OnInit,
-  Output,
+  output,
 } from '@angular/core';
 import {
   FormGroup,
@@ -41,7 +40,8 @@ import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/
   ],
 })
 export class EducationMedicalWorkerInfoFormComponent implements OnInit {
-  @Output() formReady = new EventEmitter<FormGroup>();
+  formReady = output<FormGroup>();
+
   educationMedicalWorkerInfoFormGroup!: FormGroup;
   FORM_VALIDATION_ERROR_MESSAGES = FORM_VALIDATION_ERROR_MESSAGES;
 

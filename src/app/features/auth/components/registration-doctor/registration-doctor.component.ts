@@ -27,7 +27,6 @@ import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepi
 import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 import { ActionButtonComponent } from 'src/app/shared/components/action-button/action-button.component';
 import { RegistrationBaseComponent } from 'src/app/features/auth/components/registration-base/registration-base.component';
-import { DoctorInterface } from 'src/app/shared/models/doctor.interface';
 
 @Component({
   selector: 'health-registration-doctor',
@@ -73,10 +72,5 @@ export class RegistrationDoctorComponent
 
   ngOnInit(): void {
     this.initializeForm();
-  }
-
-  onSubmitForm(): void {
-    const user: DoctorInterface = this.registrationForm.value;
-    console.log('doctor', user);
   }
 }

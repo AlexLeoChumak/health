@@ -63,14 +63,16 @@
               ></health-contact-info-form>
             </ion-item-group>
 
-            <health-action-button
-              [configProps]="{
+            <ion-item lines="none">
+              <health-action-button
+                [configProps]="{
                 isFormButton: true,
                 label: 'зарегистрироваться',
                 isDisabled: false,
                 routerLink: null,
               }"
-            ></health-action-button>
+              ></health-action-button>
+            </ion-item>
           </form>
         </ion-col>
       </ion-row>
