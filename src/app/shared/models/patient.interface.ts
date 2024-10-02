@@ -41,7 +41,7 @@ export interface PatientBaseInterface {
       gender: string;
       lastName: string;
       middleName: string | null;
-      photo: File | string;
+      photo: File | string | null;
     };
   };
 }

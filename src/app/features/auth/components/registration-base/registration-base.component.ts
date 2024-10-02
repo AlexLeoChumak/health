@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { DoctorRequestInterface } from 'src/app/shared/models/doctor.interface';
 import { PatientRequestInterface } from 'src/app/shared/models/patient.interface';
-import { AuthMessageResponseInterface } from 'src/app/features/auth/models/auth-message-response.interface';
+import { RegistrationResponseInterface } from 'src/app/features/auth/models/registration-response.interface';
 
 @Component({
   selector: 'health-registration-base',
@@ -65,10 +65,12 @@ export abstract class RegistrationBaseComponent implements OnDestroy {
     const userData: PatientRequestInterface | DoctorRequestInterface =
       this.registrationForm.value;
 
+    console.log(userData); // удалить
+
     this.registrationSubscription = this.authService
       .registration(userData)
       .subscribe({
-        next: (res: AuthMessageResponseInterface) => {
+        next: (res: RegistrationResponseInterface) => {
           this.toastService.presentToast(res.message);
         },
       });
