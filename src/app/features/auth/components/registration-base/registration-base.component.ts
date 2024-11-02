@@ -65,8 +65,6 @@ export abstract class RegistrationBaseComponent implements OnDestroy {
     const userData: PatientRequestInterface | DoctorRequestInterface =
       this.registrationForm.value;
 
-    console.log(userData); // удалить
-
     this.registrationSubscription = this.authService
       .registration(userData)
       .subscribe({
