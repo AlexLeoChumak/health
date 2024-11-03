@@ -1,23 +1,23 @@
-# Базовый образ Node.js
-FROM node:22
-
-# Устанавливаем рабочую директорию
-WORKDIR /src
-
-# Копируем package.json и package-lock.json
-COPY package*.json ./
-
-# Устанавливаем зависимости, игнорируя optional dependencies
-RUN npm install --no-optional
+# Используем официальный Node образ для установки зависимостей
+FROM node:20
 
 # Устанавливаем Ionic CLI глобально
 RUN npm install -g @ionic/cli
 
-# Копируем исходный код проекта
+# Устанавливаем рабочую директорию в контейнере
+WORKDIR /app
+
+# Копируем package.json и package-lock.json для установки зависимостей
+COPY package*.json ./
+
+# Устанавливаем зависимости
+RUN npm install
+
+# Копируем остальные файлы проекта в контейнер
 COPY . .
 
-# Открываем порт 8100 для Ionic (по умолчанию `ionic serve` использует порт 8100)
+# Открываем порт 8100 для доступа к приложению
 EXPOSE 8100
 
-# Запускаем приложение в режиме разработки
-CMD ["ionic", "serve", "--host=0.0.0.0"]
+# Запускаем Ionic сервер
+CMD ["ionic", "serve", "--host", "0.0.0.0", "--port", "8100"]
