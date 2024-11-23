@@ -15,27 +15,14 @@ import {
   Validators,
 } from '@angular/forms';
 import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
   IonItem,
   IonLabel,
   IonInput,
   IonButton,
-  IonSelect,
-  IonSelectOption,
-  IonDatetime,
-  IonPopover,
-  IonText,
   IonNote,
   IonItemGroup,
-  IonItemDivider,
-  IonList,
   IonRadio,
   IonRadioGroup,
-  IonListHeader,
-  IonCheckbox,
   IonThumbnail,
   IonImg,
   IonIcon,
@@ -46,8 +33,8 @@ import { addIcons } from 'ionicons';
 import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
 import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
 import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
-import { getDatepickerButtonLabelUtility } from 'src/app/shared/utils/getDatepickerButtonLabel.utility';
-import { formattingDateToLocalStringUtility } from 'src/app/shared/utils/formattingDateToLocalString.utility';
+import { getDatepickerButtonLabelUtility } from 'src/app/shared/utils/get-datepicker-button-label.utility';
+import { formattingDateToLocalStringUtility } from 'src/app/shared/utils/formatting-date-to-local-string.utility';
 import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 import {
   ActionButtonComponent,
@@ -65,27 +52,14 @@ import {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IonCheckbox,
-    IonListHeader,
     IonRadioGroup,
     IonRadio,
-    IonList,
-    IonItemDivider,
     IonItemGroup,
     IonNote,
-    IonPopover,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
     IonItem,
     IonLabel,
     IonInput,
     IonButton,
-    IonSelect,
-    IonSelectOption,
-    IonDatetime,
-    IonText,
     IonThumbnail,
     IonImg,
     DatepickerComponent,

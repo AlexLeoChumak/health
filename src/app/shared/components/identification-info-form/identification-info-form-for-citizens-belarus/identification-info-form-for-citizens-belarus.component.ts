@@ -13,13 +13,10 @@ import {
 } from '@angular/forms';
 import {
   IonItemGroup,
-  IonItemDivider,
   IonItem,
   IonLabel,
   IonInput,
   IonNote,
-  IonRadioGroup,
-  IonRadio,
   IonButton,
 } from '@ionic/angular/standalone';
 
@@ -30,8 +27,8 @@ import {
   ActionButtonComponent,
   LabelButtonType,
 } from '../../action-button/action-button.component';
-import { getDatepickerButtonLabelUtility } from 'src/app/shared/utils/getDatepickerButtonLabel.utility';
-import { formattingDateToLocalStringUtility } from 'src/app/shared/utils/formattingDateToLocalString.utility';
+import { getDatepickerButtonLabelUtility } from 'src/app/shared/utils/get-datepicker-button-label.utility';
+import { formattingDateToLocalStringUtility } from 'src/app/shared/utils/formatting-date-to-local-string.utility';
 
 @Component({
   selector: 'health-identification-info-form-for-citizens-belarus',
@@ -40,13 +37,9 @@ import { formattingDateToLocalStringUtility } from 'src/app/shared/utils/formatt
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    IonButton,
     FormsModule,
     ReactiveFormsModule,
-    IonRadio,
-    IonRadioGroup,
     IonItemGroup,
-    IonItemDivider,
     IonItem,
     IonLabel,
     IonInput,
