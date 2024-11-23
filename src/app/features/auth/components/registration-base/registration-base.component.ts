@@ -6,13 +6,12 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { DoctorRequestInterface } from 'src/app/shared/models/doctor.interface';
 import { PatientRequestInterface } from 'src/app/shared/models/patient.interface';
-import { RegistrationResponseInterface } from 'src/app/features/auth/models/registration-response.interface';
 
 @Component({
   selector: 'health-registration-base',
@@ -67,8 +66,9 @@ export abstract class RegistrationBaseComponent implements OnDestroy {
 
     this.registrationSubscription = this.authService
       .registration(userData)
+      .pipe(tap((q) => console.log('donald', q)))
       .subscribe({
-        next: (res: RegistrationResponseInterface) => {
+        next: (res: any) => {
           this.toastService.presentToast(res.message);
         },
       });
