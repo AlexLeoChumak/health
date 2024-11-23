@@ -14,31 +14,19 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
   IonItem,
   IonLabel,
   IonInput,
-  IonButton,
   IonSelect,
   IonSelectOption,
-  IonDatetime,
-  IonPopover,
-  IonText,
   IonNote,
   IonItemGroup,
-  IonItemDivider,
-  IonList,
-  IonRadio,
-  IonRadioGroup,
-  IonListHeader,
-  IonCheckbox,
 } from '@ionic/angular/standalone';
 
 import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
+import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
+import { checkInputValidatorUtility } from 'src/app/shared/utils/checkInputValidator.utility';
 
 type addressPropsType =
   | 'Адрес регистрации'
@@ -55,28 +43,15 @@ type addressPropsType =
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IonCheckbox,
-    IonListHeader,
-    IonRadioGroup,
-    IonRadio,
-    IonList,
-    IonItemDivider,
     IonItemGroup,
     IonNote,
-    IonPopover,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
     IonItem,
     IonLabel,
     IonInput,
-    IonButton,
     IonSelect,
     IonSelectOption,
-    IonDatetime,
-    IonText,
     ValidatorFormControlComponent,
+    ErrorNotificationComponent,
   ],
 })
 export class AddressInfoFormComponent implements OnInit {
@@ -99,16 +74,37 @@ export class AddressInfoFormComponent implements OnInit {
   }
 
   initializeForm(): void {
+    const minInputValue: number = 1;
+    const maxInputValue: number = 99999;
+
     this.addressInfoFormGroup = new FormGroup({
       region: new FormControl(null, [Validators.required]),
       district: new FormControl(null, [Validators.required]),
       city: new FormControl(null, [Validators.required]),
       street: new FormControl(null, [Validators.required]),
-      house: new FormControl(null, [Validators.required]),
-      housing: new FormControl(null),
-      apartment: new FormControl(null),
+      house: new FormControl(null, [
+        Validators.required,
+        Validators.min(minInputValue),
+        Validators.max(maxInputValue),
+      ]),
+      housing: new FormControl(null, [
+        Validators.min(minInputValue),
+        Validators.max(maxInputValue),
+      ]),
+      apartment: new FormControl(null, [
+        Validators.min(minInputValue),
+        Validators.max(maxInputValue),
+      ]),
     });
 
     this.formReady.emit(this.addressInfoFormGroup);
+  }
+
+  checkInputValidator(
+    formGroup: FormGroup,
+    controlName: string,
+    validator: string
+  ): boolean {
+    return checkInputValidatorUtility(formGroup, controlName, validator);
   }
 }
