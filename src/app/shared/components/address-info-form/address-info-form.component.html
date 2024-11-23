@@ -11,13 +11,11 @@
       }
     </ion-select>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: addressInfoFormGroup.get('region')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if(checkInputValidator(addressInfoFormGroup, 'region', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -28,13 +26,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: addressInfoFormGroup.get('district')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if(checkInputValidator(addressInfoFormGroup, 'district', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -47,13 +43,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: addressInfoFormGroup.get('city')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if(checkInputValidator(addressInfoFormGroup, 'city', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -64,13 +58,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: addressInfoFormGroup.get('street')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if(checkInputValidator(addressInfoFormGroup, 'street', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -81,13 +73,19 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: addressInfoFormGroup.get('house')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if(checkInputValidator(addressInfoFormGroup, 'house', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    } @if(checkInputValidator(addressInfoFormGroup, 'house', 'min')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.min"
+    ></health-error-notification>
+    } @if(checkInputValidator(addressInfoFormGroup, 'house', 'max')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.max"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -99,6 +97,16 @@
       formControlName="housing"
       class="margin-top"
     ></ion-input>
+
+    @if(checkInputValidator(addressInfoFormGroup, 'housing', 'min')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.min"
+    ></health-error-notification>
+    } @if(checkInputValidator(addressInfoFormGroup, 'housing', 'max')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.max"
+    ></health-error-notification>
+    }
   </ion-item>
 
   @if (addressTypeProps() !== 'Адрес места работы') {
@@ -111,6 +119,16 @@
       formControlName="apartment"
       class="margin-top"
     ></ion-input>
+
+    @if(checkInputValidator(addressInfoFormGroup, 'apartment', 'min')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.min"
+    ></health-error-notification>
+    } @if(checkInputValidator(addressInfoFormGroup, 'apartment', 'max')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.max"
+    ></health-error-notification>
+    }
   </ion-item>
   }
 </ion-item-group>
