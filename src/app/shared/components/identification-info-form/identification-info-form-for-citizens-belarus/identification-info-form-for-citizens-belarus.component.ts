@@ -17,7 +17,6 @@ import {
   IonLabel,
   IonInput,
   IonNote,
-  IonButton,
 } from '@ionic/angular/standalone';
 
 import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
@@ -26,9 +25,11 @@ import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/
 import {
   ActionButtonComponent,
   LabelButtonType,
-} from '../../action-button/action-button.component';
+} from 'src/app/shared/components/action-button/action-button.component';
 import { getDatepickerButtonLabelUtility } from 'src/app/shared/utils/get-datepicker-button-label.utility';
 import { formattingDateToLocalStringUtility } from 'src/app/shared/utils/formatting-date-to-local-string.utility';
+import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-validator.utility';
+import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 
 @Component({
   selector: 'health-identification-info-form-for-citizens-belarus',
@@ -47,23 +48,23 @@ import { formattingDateToLocalStringUtility } from 'src/app/shared/utils/formatt
     DatepickerComponent,
     ValidatorFormControlComponent,
     ActionButtonComponent,
+    ErrorNotificationComponent,
   ],
 })
 export class IdentificationInfoFormForCitizensBelarusComponent
   implements OnInit
 {
-  formControls = output<Record<string, FormControl>>();
-  controls!: Record<string, FormControl>;
-  isDatepickerOpen = signal<boolean>(false);
-  FORM_VALIDATION_ERROR_MESSAGES = FORM_VALIDATION_ERROR_MESSAGES;
+  protected readonly formControls = output<Record<string, FormControl>>();
+  protected controls!: Record<string, FormControl>;
+  protected readonly isDatepickerOpen = signal<boolean>(false);
+  protected readonly FORM_VALIDATION_ERROR_MESSAGES =
+    FORM_VALIDATION_ERROR_MESSAGES;
 
-  constructor() {}
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initializeForm();
   }
 
-  initializeForm(): void {
+  private initializeForm(): void {
     this.controls = {
       personalIdentificationNumber: new FormControl(null, [
         Validators.required,
@@ -76,17 +77,23 @@ export class IdentificationInfoFormForCitizensBelarusComponent
     this.formControls.emit(this.controls);
   }
 
-  toggleDatepicker(): void {
+  protected toggleDatepicker(): void {
     this.isDatepickerOpen.update((prevValue) => !prevValue);
   }
 
-  get datepickerButtonLabel(): LabelButtonType {
+  protected get datepickerButtonLabel(): LabelButtonType {
     return getDatepickerButtonLabelUtility(this.isDatepickerOpen());
   }
 
-  onDateChange(date: string): void {
+  protected onDateChange(date: string): void {
     const formattedPassportIssueDate = formattingDateToLocalStringUtility(date);
-
     this.controls['passportIssueDate'].setValue(formattedPassportIssueDate);
+  }
+
+  protected checkInputValidator(
+    controlName: string,
+    validator: string
+  ): boolean {
+    return checkInputValidatorUtility(this.controls, controlName, validator);
   }
 }

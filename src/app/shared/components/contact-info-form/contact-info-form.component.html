@@ -8,15 +8,24 @@
       type="tel"
       formControlName="mobilePhoneNumber"
       class="margin-top"
+      autocomplete="tel"
+      healthPhonePrefixFormatter
+      maxlength="17"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: contactInfoFormGroup.get('mobilePhoneNumber')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(contactInfoFormGroup, 'mobilePhoneNumber',
+    'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    } @if (checkInputValidator(contactInfoFormGroup, 'mobilePhoneNumber',
+    'minlength')) {
+    <health-error-notification
+      [errorNotificationProps]="
+        FORM_VALIDATION_ERROR_MESSAGES.minLengthNumberPhone
+      "
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -25,6 +34,8 @@
       type="tel"
       formControlName="homePhoneNumber"
       class="margin-top"
+      autocomplete="tel"
+      maxlength="17"
     ></ion-input>
   </ion-item>
 
@@ -36,23 +47,18 @@
       type="email"
       formControlName="email"
       class="margin-top"
+      autocomplete="email"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: contactInfoFormGroup.get('email')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
-
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: contactInfoFormGroup.get('email')!,
-        validator: 'email',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.email
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(contactInfoFormGroup, 'email', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    } @if (checkInputValidator(contactInfoFormGroup, 'email', 'email')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.email"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -63,22 +69,19 @@
       type="password"
       formControlName="password"
       class="margin-top"
+      autocomplete="new-password"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: contactInfoFormGroup.get('password')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
-
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: contactInfoFormGroup.get('password')!,
-        validator: 'minlength',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.minlength
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(contactInfoFormGroup, 'password', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    } @if (checkInputValidator(contactInfoFormGroup, 'password', 'minlength')) {
+    <health-error-notification
+      [errorNotificationProps]="
+        FORM_VALIDATION_ERROR_MESSAGES.minlengthPassword
+      "
+    ></health-error-notification>
+    }
   </ion-item>
 </ion-item-group>

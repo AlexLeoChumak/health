@@ -8,13 +8,12 @@
       [formControl]="controls['nameStateForeignCitizen']"
       class="margin-top"
     ></ion-input>
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: controls['nameStateForeignCitizen'],
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+
+    @if (checkInputValidator( 'nameStateForeignCitizen', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -27,13 +26,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: controls['documentName'],
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator( 'documentName', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -46,13 +43,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: controls['documentNumber'],
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator('documentNumber', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -65,13 +60,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: controls['nameInsuranceCompany'],
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator('nameInsuranceCompany', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -84,12 +77,10 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: controls['healthInsuranceContractNumber'],
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator('healthInsuranceContractNumber', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 </ion-item-group>

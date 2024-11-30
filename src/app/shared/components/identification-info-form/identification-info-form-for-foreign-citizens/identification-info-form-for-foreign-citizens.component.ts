@@ -25,6 +25,8 @@ import {
 import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
 import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
 import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
+import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-validator.utility';
+import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 
 @Component({
   selector: 'health-identification-info-form-for-foreign-citizens',
@@ -46,22 +48,22 @@ import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/
     IonNote,
     DatepickerComponent,
     ValidatorFormControlComponent,
+    ErrorNotificationComponent,
   ],
 })
 export class IdentificationInfoFormForForeignCitizensComponent
   implements OnInit
 {
-  formControls = output<Record<string, FormControl>>();
-  controls!: Record<string, FormControl>;
-  FORM_VALIDATION_ERROR_MESSAGES = FORM_VALIDATION_ERROR_MESSAGES;
+  protected readonly formControls = output<Record<string, FormControl>>();
+  protected controls!: Record<string, FormControl>;
+  protected readonly FORM_VALIDATION_ERROR_MESSAGES =
+    FORM_VALIDATION_ERROR_MESSAGES;
 
-  constructor() {}
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initializeForm();
   }
 
-  initializeForm(): void {
+  private initializeForm(): void {
     this.controls = {
       nameStateForeignCitizen: new FormControl(null, [Validators.required]),
       documentName: new FormControl(null, [Validators.required]),
@@ -73,5 +75,12 @@ export class IdentificationInfoFormForForeignCitizensComponent
     };
 
     this.formControls.emit(this.controls);
+  }
+
+  protected checkInputValidator(
+    controlName: string,
+    validator: string
+  ): boolean {
+    return checkInputValidatorUtility(this.controls, controlName, validator);
   }
 }

@@ -19,8 +19,9 @@ import {
   IonNote,
 } from '@ionic/angular/standalone';
 
-import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
 import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
+import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-validator.utility';
+import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 
 @Component({
   selector: 'health-education-medical-worker-info-form',
@@ -36,20 +37,20 @@ import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/
     IonItemDivider,
     IonLabel,
     IonInput,
-    ValidatorFormControlComponent,
+    ErrorNotificationComponent,
   ],
 })
 export class EducationMedicalWorkerInfoFormComponent implements OnInit {
-  formReady = output<FormGroup>();
+  protected readonly formReady = output<FormGroup>();
+  protected educationMedicalWorkerInfoFormGroup!: FormGroup;
+  protected readonly FORM_VALIDATION_ERROR_MESSAGES =
+    FORM_VALIDATION_ERROR_MESSAGES;
 
-  educationMedicalWorkerInfoFormGroup!: FormGroup;
-  FORM_VALIDATION_ERROR_MESSAGES = FORM_VALIDATION_ERROR_MESSAGES;
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initializeForm();
   }
 
-  initializeForm(): void {
+  private initializeForm(): void {
     this.educationMedicalWorkerInfoFormGroup = new FormGroup({
       nameEducationalInstitution: new FormControl(null, [Validators.required]),
       faculty: new FormControl(null, [Validators.required]),
@@ -65,5 +66,13 @@ export class EducationMedicalWorkerInfoFormComponent implements OnInit {
     });
 
     this.formReady.emit(this.educationMedicalWorkerInfoFormGroup);
+  }
+
+  protected checkInputValidator(
+    formGroup: FormGroup,
+    controlName: string,
+    validator: string
+  ): boolean {
+    return checkInputValidatorUtility(formGroup, controlName, validator);
   }
 }

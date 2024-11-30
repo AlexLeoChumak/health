@@ -40,6 +40,7 @@ import {
   ActionButtonComponent,
   LabelButtonType,
 } from 'src/app/shared/components/action-button/action-button.component';
+import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-validator.utility';
 
 @Component({
   selector: 'health-personal-info-form',
@@ -179,5 +180,13 @@ export class PersonalInfoFormComponent implements OnInit {
     this.personalInfoFormGroup.patchValue({
       dateOfBirth: formattedBirthDate,
     });
+  }
+
+  checkInputValidator(
+    formGroup: FormGroup,
+    controlName: string,
+    validator: string
+  ): boolean {
+    return checkInputValidatorUtility(formGroup, controlName, validator);
   }
 }

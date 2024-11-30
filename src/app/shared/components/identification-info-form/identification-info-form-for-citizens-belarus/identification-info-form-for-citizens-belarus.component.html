@@ -10,13 +10,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: controls['personalIdentificationNumber'],
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator( 'personalIdentificationNumber', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -30,13 +28,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: controls['passportSeriesNumber'],
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator( 'passportSeriesNumber', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -49,24 +45,23 @@
       type="text"
       [formControl]="controls['passportIssueDate']"
       class="margin-top"
+      readonly
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: controls['passportIssueDate'],
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator( 'passportIssueDate', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
 
     <health-action-button
       (click)="toggleDatepicker()"
       [configProps]="{
-    label: datepickerButtonLabel,
-    isFormButton: false,
-    isDisabled: false,
-    routerLink: null,
-}"
+      label: datepickerButtonLabel,
+      isFormButton: false,
+      isDisabled: false,
+      routerLink: null,
+      }"
     ></health-action-button>
   </ion-item>
 
@@ -83,12 +78,11 @@
       [formControl]="controls['passportIssuingAuthority']"
       class="margin-top"
     ></ion-input>
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: controls['passportIssuingAuthority'],
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+
+    @if (checkInputValidator( 'passportIssuingAuthority', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 </ion-item-group>

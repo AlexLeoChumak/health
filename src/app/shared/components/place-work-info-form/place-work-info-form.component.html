@@ -11,13 +11,12 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: placeWorkInfoFormGroup.get('nameMedicalInstitution')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(placeWorkInfoFormGroup, 'nameMedicalInstitution',
+    'required')) {
+    <health-error-notification
+      [errorNotificationProps]="formValidationErrorMessages.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -30,13 +29,12 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: placeWorkInfoFormGroup.get('department')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(placeWorkInfoFormGroup, 'department', 'required'))
+    {
+    <health-error-notification
+      [errorNotificationProps]="formValidationErrorMessages.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -49,12 +47,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: placeWorkInfoFormGroup.get('currentSpecialization')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(placeWorkInfoFormGroup, 'currentSpecialization',
+    'required')) {
+    <health-error-notification
+      [errorNotificationProps]="formValidationErrorMessages.required"
+    ></health-error-notification>
+    }
   </ion-item>
 </ion-item-group>

@@ -11,15 +11,12 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: educationMedicalWorkerInfoFormGroup.get(
-          'nameEducationalInstitution'
-        )!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(educationMedicalWorkerInfoFormGroup,
+    'nameEducationalInstitution', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -32,13 +29,12 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: educationMedicalWorkerInfoFormGroup.get('faculty')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(educationMedicalWorkerInfoFormGroup, 'faculty',
+    'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -51,13 +47,12 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: educationMedicalWorkerInfoFormGroup.get('speciality')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(educationMedicalWorkerInfoFormGroup, 'speciality',
+    'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -70,13 +65,12 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: educationMedicalWorkerInfoFormGroup.get('specialization')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(educationMedicalWorkerInfoFormGroup,
+    'specialization', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -89,15 +83,12 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: educationMedicalWorkerInfoFormGroup.get(
-          'numberDiplomaHigherMedicalEducation'
-        )!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(educationMedicalWorkerInfoFormGroup,
+    'numberDiplomaHigherMedicalEducation', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -110,15 +101,12 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: educationMedicalWorkerInfoFormGroup.get(
-          'licenseNumberMedicalActivities'
-        )!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(educationMedicalWorkerInfoFormGroup,
+    'licenseNumberMedicalActivities', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -131,14 +119,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: educationMedicalWorkerInfoFormGroup.get(
-          'specialistCertificateNumber'
-        )!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(educationMedicalWorkerInfoFormGroup,
+    'specialistCertificateNumber', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 </ion-item-group>

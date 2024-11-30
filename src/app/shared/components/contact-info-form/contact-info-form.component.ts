@@ -13,32 +13,18 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
   IonItem,
   IonLabel,
   IonInput,
-  IonButton,
-  IonSelect,
-  IonSelectOption,
-  IonDatetime,
-  IonPopover,
-  IonText,
   IonNote,
   IonItemGroup,
-  IonItemDivider,
-  IonList,
-  IonRadio,
-  IonRadioGroup,
-  IonListHeader,
-  IonCheckbox,
 } from '@ionic/angular/standalone';
 
-import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
 import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
 import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
+import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-validator.utility';
+import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
+import { PhonePrefixFormatterDirective } from 'src/app/features/auth/directives/phone-prefix-formatter.directive';
 
 @Component({
   selector: 'health-contact-info-form',
@@ -50,29 +36,14 @@ import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IonCheckbox,
-    IonListHeader,
-    IonRadioGroup,
-    IonRadio,
-    IonList,
-    IonItemDivider,
     IonItemGroup,
     IonNote,
-    IonPopover,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
     IonItem,
     IonLabel,
     IonInput,
-    IonButton,
-    IonSelect,
-    IonSelectOption,
-    IonDatetime,
-    IonText,
-    DatepickerComponent,
     ValidatorFormControlComponent,
+    ErrorNotificationComponent,
+    PhonePrefixFormatterDirective,
   ],
 })
 export class ContactInfoFormComponent implements OnInit {
@@ -87,7 +58,10 @@ export class ContactInfoFormComponent implements OnInit {
 
   initializeForm(): void {
     this.contactInfoFormGroup = new FormGroup({
-      mobilePhoneNumber: new FormControl(null, [Validators.required]),
+      mobilePhoneNumber: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(17),
+      ]),
       homePhoneNumber: new FormControl(null),
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [
@@ -97,5 +71,13 @@ export class ContactInfoFormComponent implements OnInit {
     });
 
     this.formReady.emit(this.contactInfoFormGroup);
+  }
+
+  checkInputValidator(
+    formGroup: FormGroup,
+    controlName: string,
+    validator: string
+  ): boolean {
+    return checkInputValidatorUtility(formGroup, controlName, validator);
   }
 }

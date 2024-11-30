@@ -9,13 +9,11 @@
       class="margin-top"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: personalInfoFormGroup.get('lastName')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(personalInfoFormGroup, 'lastName', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -26,13 +24,11 @@
       formControlName="firstName"
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: personalInfoFormGroup.get('firstName')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(personalInfoFormGroup, 'firstName', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
   </ion-item>
 
   <ion-item>
@@ -55,15 +51,15 @@
       type="text"
       formControlName="dateOfBirth"
       class="margin-top"
+      readonly
     ></ion-input>
 
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: personalInfoFormGroup.get('dateOfBirth')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
+    @if (checkInputValidator(personalInfoFormGroup, 'dateOfBirth', 'required'))
+    {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    }
 
     <health-action-button
       (click)="toggleDatepicker()"
@@ -132,17 +128,11 @@
         </ion-button>
       </figcaption>
     </figure>
-    }
-
-    <health-validator-form-control
-      [validatorFormControlProps]="{
-        control: personalInfoFormGroup.get('photo')!,
-        validator: 'required',
-        errorMessage: FORM_VALIDATION_ERROR_MESSAGES.required
-      }"
-    ></health-validator-form-control>
-
-    @if (!isImageType()) {
+    } @if (checkInputValidator(personalInfoFormGroup, 'photo', 'required')) {
+    <health-error-notification
+      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+    ></health-error-notification>
+    } @if (!isImageType()) {
     <health-error-notification
       [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.image"
     >

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   input,
   OnInit,
   output,
@@ -23,10 +24,10 @@ import {
   IonItemGroup,
 } from '@ionic/angular/standalone';
 
-import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
 import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
+import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-validator.utility';
 import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
-import { checkInputValidatorUtility } from 'src/app/shared/utils/checkInputValidator.utility';
+import { NumericInputRestrictionDirective } from 'src/app/shared/directives/numeric-input-restriction.directive';
 
 type addressPropsType =
   | 'Адрес регистрации'
@@ -50,17 +51,17 @@ type addressPropsType =
     IonInput,
     IonSelect,
     IonSelectOption,
-    ValidatorFormControlComponent,
     ErrorNotificationComponent,
+    NumericInputRestrictionDirective,
   ],
 })
 export class AddressInfoFormComponent implements OnInit {
-  addressTypeProps = input<addressPropsType>();
-  formReady = output<FormGroup>();
-
-  addressInfoFormGroup!: FormGroup;
-  FORM_VALIDATION_ERROR_MESSAGES = FORM_VALIDATION_ERROR_MESSAGES;
-  regions: string[] = [
+  public readonly addressTypeProps = input<addressPropsType>();
+  protected readonly formReady = output<FormGroup>();
+  protected addressInfoFormGroup!: FormGroup;
+  protected readonly formValidationErrorMessages =
+    FORM_VALIDATION_ERROR_MESSAGES;
+  protected readonly regions: string[] = [
     'Брестская область',
     'Витебская область',
     'Гомельская область',
@@ -69,11 +70,11 @@ export class AddressInfoFormComponent implements OnInit {
     'Могилевская область',
   ];
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initializeForm();
   }
 
-  initializeForm(): void {
+  private initializeForm(): void {
     const minInputValue: number = 1;
     const maxInputValue: number = 99999;
 
@@ -84,6 +85,7 @@ export class AddressInfoFormComponent implements OnInit {
       street: new FormControl(null, [Validators.required]),
       house: new FormControl(null, [
         Validators.required,
+        Validators.pattern('^[0-9]*$'), // как уведомить об ошибке
         Validators.min(minInputValue),
         Validators.max(maxInputValue),
       ]),
@@ -100,7 +102,7 @@ export class AddressInfoFormComponent implements OnInit {
     this.formReady.emit(this.addressInfoFormGroup);
   }
 
-  checkInputValidator(
+  protected checkInputValidator(
     formGroup: FormGroup,
     controlName: string,
     validator: string

@@ -22,7 +22,7 @@ import {
 import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
 import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 import { AddressInfoFormComponent } from 'src/app/shared/components/address-info-form/address-info-form.component';
-import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
+import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-validator.utility';
 
 @Component({
   selector: 'health-place-work-info-form',
@@ -40,21 +40,19 @@ import { ValidatorFormControlComponent } from 'src/app/shared/components/validat
     IonInput,
     ErrorNotificationComponent,
     AddressInfoFormComponent,
-    ValidatorFormControlComponent,
   ],
 })
 export class PlaceWorkInfoFormComponent implements OnInit {
-  formReady = output<FormGroup>();
-  placeWorkInfoFormGroup!: FormGroup;
-  FORM_VALIDATION_ERROR_MESSAGES = FORM_VALIDATION_ERROR_MESSAGES;
+  protected readonly formReady = output<FormGroup>();
+  protected placeWorkInfoFormGroup!: FormGroup;
+  protected readonly formValidationErrorMessages =
+    FORM_VALIDATION_ERROR_MESSAGES;
 
-  constructor() {}
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initializeForm();
   }
 
-  initializeForm(): void {
+  private initializeForm(): void {
     this.placeWorkInfoFormGroup = new FormGroup({
       nameMedicalInstitution: new FormControl(null, [Validators.required]),
       department: new FormControl(null, [Validators.required]),
@@ -62,5 +60,13 @@ export class PlaceWorkInfoFormComponent implements OnInit {
     });
 
     this.formReady.emit(this.placeWorkInfoFormGroup);
+  }
+
+  protected checkInputValidator(
+    formGroup: FormGroup,
+    controlName: string,
+    validator: string
+  ): boolean {
+    return checkInputValidatorUtility(formGroup, controlName, validator);
   }
 }

@@ -13,7 +13,7 @@
 
     @if(checkInputValidator(addressInfoFormGroup, 'region', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -28,7 +28,7 @@
 
     @if(checkInputValidator(addressInfoFormGroup, 'district', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -45,7 +45,7 @@
 
     @if(checkInputValidator(addressInfoFormGroup, 'city', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -60,7 +60,7 @@
 
     @if(checkInputValidator(addressInfoFormGroup, 'street', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -71,19 +71,20 @@
       type="number"
       formControlName="house"
       class="margin-top"
+      healthNumericInputRestriction
     ></ion-input>
 
     @if(checkInputValidator(addressInfoFormGroup, 'house', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     } @if(checkInputValidator(addressInfoFormGroup, 'house', 'min')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.min"
+      [errorNotificationProps]="formValidationErrorMessages.min"
     ></health-error-notification>
     } @if(checkInputValidator(addressInfoFormGroup, 'house', 'max')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.max"
+      [errorNotificationProps]="formValidationErrorMessages.max"
     ></health-error-notification>
     }
   </ion-item>
@@ -96,15 +97,16 @@
       type="number"
       formControlName="housing"
       class="margin-top"
+      healthNumericInputRestriction
     ></ion-input>
 
     @if(checkInputValidator(addressInfoFormGroup, 'housing', 'min')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.min"
+      [errorNotificationProps]="formValidationErrorMessages.min"
     ></health-error-notification>
     } @if(checkInputValidator(addressInfoFormGroup, 'housing', 'max')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.max"
+      [errorNotificationProps]="formValidationErrorMessages.max"
     ></health-error-notification>
     }
   </ion-item>
@@ -118,15 +120,16 @@
       type="number"
       formControlName="apartment"
       class="margin-top"
+      healthNumericInputRestriction
     ></ion-input>
 
     @if(checkInputValidator(addressInfoFormGroup, 'apartment', 'min')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.min"
+      [errorNotificationProps]="formValidationErrorMessages.min"
     ></health-error-notification>
     } @if(checkInputValidator(addressInfoFormGroup, 'apartment', 'max')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.max"
+      [errorNotificationProps]="formValidationErrorMessages.max"
     ></health-error-notification>
     }
   </ion-item>
