@@ -2,27 +2,32 @@
   <ion-item class="section-title">Контактная информация</ion-item>
   <ion-item>
     <ion-label position="floating" class="required-to-fill"
-      >Мобильный номер телефона</ion-label
+      >Мобильный номер телефона
+      <ion-note
+        >(Введите код оператора - 2 символа, и номер телефона - 7
+        символов)</ion-note
+      ></ion-label
     >
     <ion-input
       type="tel"
       formControlName="mobilePhoneNumber"
       class="margin-top"
       autocomplete="tel"
-      healthPhonePrefixFormatter
+      aria-placeholder="+375-XX-XXX-XX-XX"
       maxlength="17"
+      healthPhonePrefixFormatter
     ></ion-input>
 
     @if (checkInputValidator(contactInfoFormGroup, 'mobilePhoneNumber',
     'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     } @if (checkInputValidator(contactInfoFormGroup, 'mobilePhoneNumber',
     'minlength')) {
     <health-error-notification
       [errorNotificationProps]="
-        FORM_VALIDATION_ERROR_MESSAGES.minLengthNumberPhone
+        formValidationErrorMessages.minLengthNumberPhone
       "
     ></health-error-notification>
     }
@@ -35,7 +40,9 @@
       formControlName="homePhoneNumber"
       class="margin-top"
       autocomplete="tel"
+      placeholder="+375-XX-XXX-XX-XX"
       maxlength="17"
+      healthPhonePrefixFormatter
     ></ion-input>
   </ion-item>
 
@@ -52,11 +59,11 @@
 
     @if (checkInputValidator(contactInfoFormGroup, 'email', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     } @if (checkInputValidator(contactInfoFormGroup, 'email', 'email')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.email"
+      [errorNotificationProps]="formValidationErrorMessages.email"
     ></health-error-notification>
     }
   </ion-item>
@@ -74,13 +81,11 @@
 
     @if (checkInputValidator(contactInfoFormGroup, 'password', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     } @if (checkInputValidator(contactInfoFormGroup, 'password', 'minlength')) {
     <health-error-notification
-      [errorNotificationProps]="
-        FORM_VALIDATION_ERROR_MESSAGES.minlengthPassword
-      "
+      [errorNotificationProps]="formValidationErrorMessages.minLengthPassword"
     ></health-error-notification>
     }
   </ion-item>

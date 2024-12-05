@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  CUSTOM_ELEMENTS_SCHEMA,
   input,
   OnInit,
   output,
@@ -26,7 +25,10 @@ import {
 
 import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-validator.utility';
-import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
+import {
+  FORM_VALIDATION_ERROR_MESSAGES,
+  FormValidationErrorMessagesInterface,
+} from 'src/app/features/auth/constants/form-validation-error-messages.constant';
 import { NumericInputRestrictionDirective } from 'src/app/shared/directives/numeric-input-restriction.directive';
 
 type addressPropsType =
@@ -59,7 +61,7 @@ export class AddressInfoFormComponent implements OnInit {
   public readonly addressTypeProps = input<addressPropsType>();
   protected readonly formReady = output<FormGroup>();
   protected addressInfoFormGroup!: FormGroup;
-  protected readonly formValidationErrorMessages =
+  protected readonly formValidationErrorMessages: FormValidationErrorMessagesInterface =
     FORM_VALIDATION_ERROR_MESSAGES;
   protected readonly regions: string[] = [
     'Брестская область',
@@ -85,15 +87,17 @@ export class AddressInfoFormComponent implements OnInit {
       street: new FormControl(null, [Validators.required]),
       house: new FormControl(null, [
         Validators.required,
-        Validators.pattern('^[0-9]*$'), // как уведомить об ошибке
+        Validators.pattern('^[0-9]*$'),
         Validators.min(minInputValue),
         Validators.max(maxInputValue),
       ]),
       housing: new FormControl(null, [
+        Validators.pattern('^[0-9]*$'),
         Validators.min(minInputValue),
         Validators.max(maxInputValue),
       ]),
       apartment: new FormControl(null, [
+        Validators.pattern('^[0-9]*$'),
         Validators.min(minInputValue),
         Validators.max(maxInputValue),
       ]),

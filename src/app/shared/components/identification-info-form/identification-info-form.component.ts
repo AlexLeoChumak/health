@@ -14,18 +14,12 @@ import {
 } from '@angular/forms';
 import {
   IonItemGroup,
-  IonItemDivider,
   IonItem,
   IonLabel,
-  IonInput,
-  IonNote,
   IonRadioGroup,
   IonRadio,
-  IonButton,
 } from '@ionic/angular/standalone';
 
-import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
-import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
 import { IdentificationInfoFormForForeignCitizensComponent } from 'src/app/shared/components/identification-info-form/identification-info-form-for-foreign-citizens/identification-info-form-for-foreign-citizens.component';
 import { IdentificationInfoFormForCitizensBelarusComponent } from 'src/app/shared/components/identification-info-form/identification-info-form-for-citizens-belarus/identification-info-form-for-citizens-belarus.component';
 
@@ -36,19 +30,13 @@ import { IdentificationInfoFormForCitizensBelarusComponent } from 'src/app/share
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    IonButton,
     FormsModule,
     ReactiveFormsModule,
     IonRadio,
     IonRadioGroup,
     IonItemGroup,
-    IonItemDivider,
     IonItem,
     IonLabel,
-    IonInput,
-    IonNote,
-    DatepickerComponent,
-    ValidatorFormControlComponent,
     IdentificationInfoFormForForeignCitizensComponent,
     IdentificationInfoFormForCitizensBelarusComponent,
   ],

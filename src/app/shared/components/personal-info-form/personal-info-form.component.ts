@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   OnInit,
   output,
   signal,
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -31,8 +33,10 @@ import { trashBin } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
 import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
-import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
-import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
+import {
+  FORM_VALIDATION_ERROR_MESSAGES,
+  FormValidationErrorMessagesInterface,
+} from 'src/app/features/auth/constants/form-validation-error-messages.constant';
 import { getDatepickerButtonLabelUtility } from 'src/app/shared/utils/get-datepicker-button-label.utility';
 import { formattingDateToLocalStringUtility } from 'src/app/shared/utils/formatting-date-to-local-string.utility';
 import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
@@ -64,41 +68,42 @@ import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-val
     IonThumbnail,
     IonImg,
     DatepickerComponent,
-    ValidatorFormControlComponent,
     ActionButtonComponent,
     ErrorNotificationComponent,
   ],
 })
 export class PersonalInfoFormComponent implements OnInit {
-  formReady = output<FormGroup>();
-  personalInfoFormGroup!: FormGroup;
-  isDatepickerOpen = signal<boolean>(false);
-  isImageType = signal<boolean>(true);
-  photoPreviewUrl = signal<string | ArrayBuffer | null>(null);
-  FORM_VALIDATION_ERROR_MESSAGES = FORM_VALIDATION_ERROR_MESSAGES;
-  regions: string[] = [
-    'Брестская область',
-    'Витебская область',
-    'Гомельская область',
-    'Гродненская область',
-    'Минская область',
-    'Могилевская область',
-  ];
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+
+  protected readonly formReady = output<FormGroup>();
+  protected personalInfoFormGroup!: FormGroup;
+  protected readonly isDatepickerOpen = signal<boolean>(false);
+  protected readonly isImageType = signal<boolean>(true);
+  protected readonly photoPreviewUrl = signal<string | ArrayBuffer | null>(
+    null
+  );
+  protected readonly formValidationErrorMessages: FormValidationErrorMessagesInterface =
+    FORM_VALIDATION_ERROR_MESSAGES;
 
   constructor() {
     addIcons({ trashBin });
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initializeForm();
   }
 
-  initializeForm(): void {
+  private initializeForm(): void {
     this.personalInfoFormGroup = new FormGroup({
       lastName: new FormControl(null, [Validators.required]),
       firstName: new FormControl(null, [Validators.required]),
       middleName: new FormControl(null),
-      dateOfBirth: new FormControl(null, [Validators.required]),
+      dateOfBirth: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(
+          '^([0-9]{1,2}) (января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря) [0-9]{4} г.$'
+        ),
+      ]),
       gender: new FormControl(null, [Validators.required]),
       photo: new FormControl(null, [Validators.required]),
     });
@@ -106,12 +111,12 @@ export class PersonalInfoFormComponent implements OnInit {
     this.formReady.emit(this.personalInfoFormGroup);
   }
 
-  onClickFileInput(fileInput: HTMLInputElement): void {
+  protected onClickFileInput(fileInput: HTMLInputElement): void {
     fileInput.click();
     this.setErrorRequiredTrueForPhotoControl();
   }
 
-  setErrorRequiredTrueForPhotoControl(): void {
+  private setErrorRequiredTrueForPhotoControl(): void {
     const photoControl = this.personalInfoFormGroup.get('photo');
 
     if (!photoControl?.value) {
@@ -121,7 +126,7 @@ export class PersonalInfoFormComponent implements OnInit {
     }
   }
 
-  clearErrorRequiredTrueForPhotoControl(
+  private clearErrorRequiredTrueForPhotoControl(
     photoControl: AbstractControl | null
   ): void {
     if (photoControl) {
@@ -131,7 +136,9 @@ export class PersonalInfoFormComponent implements OnInit {
     }
   }
 
-  onPhotoUpload(event: Event): void {
+  protected onPhotoUpload(event: Event): void {
+    console.log('event', event);
+
     const input = event.target as HTMLInputElement;
     const photoControl = this.personalInfoFormGroup.get('photo');
 
@@ -161,20 +168,21 @@ export class PersonalInfoFormComponent implements OnInit {
     }
   }
 
-  removePhoto(): void {
+  protected removePhoto(): void {
     this.photoPreviewUrl.set(null);
     this.personalInfoFormGroup.get('photo')?.reset();
+    this.fileInput.nativeElement.value = '';
   }
 
-  toggleDatepicker(): void {
+  protected toggleDatepicker(): void {
     this.isDatepickerOpen.update((prevValue) => !prevValue);
   }
 
-  get datepickerButtonLabel(): LabelButtonType {
+  protected get datepickerButtonLabel(): LabelButtonType {
     return getDatepickerButtonLabelUtility(this.isDatepickerOpen());
   }
 
-  onDateChange(date: string): void {
+  protected onDateChange(date: string): void {
     const formattedBirthDate = formattingDateToLocalStringUtility(date);
 
     this.personalInfoFormGroup.patchValue({
@@ -182,7 +190,7 @@ export class PersonalInfoFormComponent implements OnInit {
     });
   }
 
-  checkInputValidator(
+  protected checkInputValidator(
     formGroup: FormGroup,
     controlName: string,
     validator: string

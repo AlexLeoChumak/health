@@ -20,8 +20,10 @@ import {
   IonItemGroup,
 } from '@ionic/angular/standalone';
 
-import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
-import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
+import {
+  FORM_VALIDATION_ERROR_MESSAGES,
+  FormValidationErrorMessagesInterface,
+} from 'src/app/features/auth/constants/form-validation-error-messages.constant';
 import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-validator.utility';
 import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 import { PhonePrefixFormatterDirective } from 'src/app/features/auth/directives/phone-prefix-formatter.directive';
@@ -41,22 +43,21 @@ import { PhonePrefixFormatterDirective } from 'src/app/features/auth/directives/
     IonItem,
     IonLabel,
     IonInput,
-    ValidatorFormControlComponent,
     ErrorNotificationComponent,
     PhonePrefixFormatterDirective,
   ],
 })
 export class ContactInfoFormComponent implements OnInit {
-  formReady = output<FormGroup>();
+  protected readonly formReady = output<FormGroup>();
+  protected contactInfoFormGroup!: FormGroup;
+  protected readonly formValidationErrorMessages: FormValidationErrorMessagesInterface =
+    FORM_VALIDATION_ERROR_MESSAGES;
 
-  contactInfoFormGroup!: FormGroup;
-  FORM_VALIDATION_ERROR_MESSAGES = FORM_VALIDATION_ERROR_MESSAGES;
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initializeForm();
   }
 
-  initializeForm(): void {
+  private initializeForm(): void {
     this.contactInfoFormGroup = new FormGroup({
       mobilePhoneNumber: new FormControl(null, [
         Validators.required,
@@ -73,7 +74,7 @@ export class ContactInfoFormComponent implements OnInit {
     this.formReady.emit(this.contactInfoFormGroup);
   }
 
-  checkInputValidator(
+  protected checkInputValidator(
     formGroup: FormGroup,
     controlName: string,
     validator: string

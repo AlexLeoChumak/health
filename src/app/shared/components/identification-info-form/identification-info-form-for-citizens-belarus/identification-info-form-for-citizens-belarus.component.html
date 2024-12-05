@@ -8,11 +8,25 @@
       type="text"
       [formControl]="controls['personalIdentificationNumber']"
       class="margin-top"
+      autocomplete="on"
+      maxlength="14"
     ></ion-input>
 
     @if (checkInputValidator( 'personalIdentificationNumber', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
+    ></health-error-notification>
+    } @if (checkInputValidator( 'personalIdentificationNumber', 'minlength')) {
+    <health-error-notification
+      [errorNotificationProps]="
+        formValidationErrorMessages.numberCharactersIdentificationNumber
+      "
+    ></health-error-notification>
+    } @if (checkInputValidator( 'personalIdentificationNumber', 'maxlength')) {
+    <health-error-notification
+      [errorNotificationProps]="
+        formValidationErrorMessages.numberCharactersIdentificationNumber
+      "
     ></health-error-notification>
     }
   </ion-item>
@@ -26,11 +40,12 @@
       type="text"
       [formControl]="controls['passportSeriesNumber']"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if (checkInputValidator( 'passportSeriesNumber', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -45,12 +60,18 @@
       type="text"
       [formControl]="controls['passportIssueDate']"
       class="margin-top"
+      placeholder="например, 01 января 2000 г."
+      aria-placeholder="Выберите вашу дату рождения в календаре"
       readonly
     ></ion-input>
 
     @if (checkInputValidator( 'passportIssueDate', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
+    ></health-error-notification>
+    } @if(checkInputValidator('passportIssueDate', 'pattern')) {
+    <health-error-notification
+      [errorNotificationProps]="formValidationErrorMessages.pattern"
     ></health-error-notification>
     }
 
@@ -77,11 +98,12 @@
       type="text"
       [formControl]="controls['passportIssuingAuthority']"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if (checkInputValidator( 'passportIssuingAuthority', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>

@@ -7,11 +7,13 @@
       type="text"
       formControlName="lastName"
       class="margin-top"
+      autocomplete="family-name"
+      aria-placeholder="Введите вашу фамилию"
     ></ion-input>
 
     @if (checkInputValidator(personalInfoFormGroup, 'lastName', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -22,11 +24,13 @@
       type="text"
       class="margin-top"
       formControlName="firstName"
+      autocomplete="given-name"
+      aria-placeholder="Введите ваше имя"
     ></ion-input>
 
     @if (checkInputValidator(personalInfoFormGroup, 'firstName', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -39,6 +43,8 @@
       type="text"
       formControlName="middleName"
       class="margin-top"
+      autocomplete="on"
+      aria-placeholder="Введите ваше отчество"
     ></ion-input>
   </ion-item>
 
@@ -51,13 +57,21 @@
       type="text"
       formControlName="dateOfBirth"
       class="margin-top"
+      placeholder="например, 01 января 2000 г."
+      aria-placeholder="Выберите вашу дату рождения в календаре"
+      autocomplete="off"
       readonly
     ></ion-input>
 
     @if (checkInputValidator(personalInfoFormGroup, 'dateOfBirth', 'required'))
     {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
+    ></health-error-notification>
+    } @if(checkInputValidator(personalInfoFormGroup, 'dateOfBirth', 'pattern'))
+    {
+    <health-error-notification
+      [errorNotificationProps]="formValidationErrorMessages.pattern"
     ></health-error-notification>
     }
 
@@ -85,7 +99,11 @@
       (click)="personalInfoFormGroup.get('gender')?.setValue('Мужской')"
     >
       <ion-label>Мужской</ion-label>
-      <ion-radio slot="start" value="Мужской"></ion-radio>
+      <ion-radio
+        slot="start"
+        value="Мужской"
+        aria-placeholder="Выберите ваш пол"
+      ></ion-radio>
     </ion-item>
     <ion-item
       (click)="personalInfoFormGroup.get('gender')?.setValue('Женский')"
@@ -119,7 +137,7 @@
 
     @if (photoPreviewUrl()) {
     <figure class="photo-preview-url">
-      <ion-thumbnail class="ion-margin-end">
+      <ion-thumbnail>
         <ion-img [src]="photoPreviewUrl()" alt="user photo"></ion-img>
       </ion-thumbnail>
       <figcaption>
@@ -130,11 +148,11 @@
     </figure>
     } @if (checkInputValidator(personalInfoFormGroup, 'photo', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     } @if (!isImageType()) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.image"
+      [errorNotificationProps]="formValidationErrorMessages.image"
     >
     </health-error-notification>
     }

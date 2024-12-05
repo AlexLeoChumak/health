@@ -5,7 +5,7 @@ import { map, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DoctorRequestInterface } from 'src/app/shared/models/doctor.interface';
 import { PatientRequestInterface } from 'src/app/shared/models/patient.interface';
-import { GlobalApiResponseInterface } from 'src/app/features/auth/models/global-api-response.interface';
+import { GlobalApiResponseInterface } from 'src/app/shared/models/global-api-response.interface';
 import { RegistrationApiResponseInterface } from 'src/app/features/auth/models/registration-api-response.interface';
 import { UpdateResultInterface } from 'src/app/shared/models/update-result.interface';
 

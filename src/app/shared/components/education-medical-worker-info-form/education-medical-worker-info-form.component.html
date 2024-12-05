@@ -9,12 +9,13 @@
       type="text"
       formControlName="nameEducationalInstitution"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if (checkInputValidator(educationMedicalWorkerInfoFormGroup,
     'nameEducationalInstitution', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -27,12 +28,13 @@
       type="text"
       formControlName="faculty"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if (checkInputValidator(educationMedicalWorkerInfoFormGroup, 'faculty',
     'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -45,12 +47,13 @@
       type="text"
       formControlName="speciality"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if (checkInputValidator(educationMedicalWorkerInfoFormGroup, 'speciality',
     'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -63,12 +66,13 @@
       type="text"
       formControlName="specialization"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if (checkInputValidator(educationMedicalWorkerInfoFormGroup,
     'specialization', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -81,12 +85,13 @@
       type="text"
       formControlName="numberDiplomaHigherMedicalEducation"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if (checkInputValidator(educationMedicalWorkerInfoFormGroup,
     'numberDiplomaHigherMedicalEducation', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -99,12 +104,13 @@
       type="text"
       formControlName="licenseNumberMedicalActivities"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if (checkInputValidator(educationMedicalWorkerInfoFormGroup,
     'licenseNumberMedicalActivities', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>
@@ -117,12 +123,13 @@
       type="text"
       formControlName="specialistCertificateNumber"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if (checkInputValidator(educationMedicalWorkerInfoFormGroup,
     'specialistCertificateNumber', 'required')) {
     <health-error-notification
-      [errorNotificationProps]="FORM_VALIDATION_ERROR_MESSAGES.required"
+      [errorNotificationProps]="formValidationErrorMessages.required"
     ></health-error-notification>
     }
   </ion-item>

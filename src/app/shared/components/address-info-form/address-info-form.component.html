@@ -24,6 +24,7 @@
       type="text"
       formControlName="district"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if(checkInputValidator(addressInfoFormGroup, 'district', 'required')) {
@@ -41,6 +42,7 @@
       type="text"
       formControlName="city"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if(checkInputValidator(addressInfoFormGroup, 'city', 'required')) {
@@ -56,6 +58,7 @@
       type="text"
       formControlName="street"
       class="margin-top"
+      autocomplete="on"
     ></ion-input>
 
     @if(checkInputValidator(addressInfoFormGroup, 'street', 'required')) {
@@ -71,6 +74,8 @@
       type="number"
       formControlName="house"
       class="margin-top"
+      autocomplete="on"
+      maxlength="5"
       healthNumericInputRestriction
     ></ion-input>
 
@@ -86,6 +91,10 @@
     <health-error-notification
       [errorNotificationProps]="formValidationErrorMessages.max"
     ></health-error-notification>
+    } @if(checkInputValidator(addressInfoFormGroup, 'house', 'pattern')) {
+    <health-error-notification
+      [errorNotificationProps]="formValidationErrorMessages.pattern"
+    ></health-error-notification>
     }
   </ion-item>
 
@@ -97,6 +106,8 @@
       type="number"
       formControlName="housing"
       class="margin-top"
+      autocomplete="on"
+      maxlength="5"
       healthNumericInputRestriction
     ></ion-input>
 
@@ -107,6 +118,10 @@
     } @if(checkInputValidator(addressInfoFormGroup, 'housing', 'max')) {
     <health-error-notification
       [errorNotificationProps]="formValidationErrorMessages.max"
+    ></health-error-notification>
+    } @if(checkInputValidator(addressInfoFormGroup, 'housing', 'pattern')) {
+    <health-error-notification
+      [errorNotificationProps]="formValidationErrorMessages.pattern"
     ></health-error-notification>
     }
   </ion-item>
@@ -120,6 +135,8 @@
       type="number"
       formControlName="apartment"
       class="margin-top"
+      autocomplete="on"
+      maxlength="5"
       healthNumericInputRestriction
     ></ion-input>
 
@@ -130,6 +147,10 @@
     } @if(checkInputValidator(addressInfoFormGroup, 'apartment', 'max')) {
     <health-error-notification
       [errorNotificationProps]="formValidationErrorMessages.max"
+    ></health-error-notification>
+    } @if(checkInputValidator(addressInfoFormGroup, 'housing', 'pattern')) {
+    <health-error-notification
+      [errorNotificationProps]="formValidationErrorMessages.pattern"
     ></health-error-notification>
     }
   </ion-item>

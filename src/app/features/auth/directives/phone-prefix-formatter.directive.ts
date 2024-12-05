@@ -5,6 +5,7 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
+import { NgControl } from '@angular/forms';
 
 @Directive({
   selector: '[healthPhonePrefixFormatter]',
@@ -12,24 +13,26 @@ import {
 })
 export class PhonePrefixFormatterDirective implements OnInit {
   private readonly prefix: string = '+375';
-  private el = inject(ElementRef);
+  private readonly el = inject(ElementRef);
+  private readonly control = inject(NgControl);
 
   public ngOnInit(): void {
     const inputElement = this.el.nativeElement;
 
     // Убедиться, что префикс установлен при инициализации
     if (!inputElement?.value?.startsWith(this.prefix)) {
-      inputElement.value = this.prefix;
+      this.control.control?.setValue(this.prefix);
     }
   }
 
   @HostListener('ionInput', ['$event'])
   public onInput(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
+    const maxLengthPhoneNumber: number = 17;
 
     // Если пользователь пытается удалить префикс, восстанавливаем его
     if (!inputElement?.value?.startsWith(this.prefix)) {
-      inputElement.value = this.prefix;
+      this.control.control?.setValue(this.prefix);
     }
 
     // Удалить все недопустимые символы (оставить только цифры после префикса)
@@ -39,8 +42,13 @@ export class PhonePrefixFormatterDirective implements OnInit {
 
     const filteredValue: string = this.formatPhoneNumber(cleanedValue);
 
+    const restrictedValue: string = filteredValue.slice(
+      0,
+      maxLengthPhoneNumber
+    );
+
     // Восстанавливаем значение с префиксом
-    inputElement.value = `${this.prefix}-${filteredValue}`;
+    this.control.control?.setValue(`${this.prefix}-${restrictedValue}`);
   }
 
   private formatPhoneNumber(phoneNumber: string): string {
@@ -59,7 +67,7 @@ export class PhonePrefixFormatterDirective implements OnInit {
 
     // Убедиться, что префикс всегда есть при фокусе
     if (!inputElement?.value?.startsWith(this.prefix)) {
-      inputElement.value = this.prefix;
+      this.control.control?.setValue(this.prefix);
     }
   }
 }

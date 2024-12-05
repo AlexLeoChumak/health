@@ -20,8 +20,10 @@ import {
 } from '@ionic/angular/standalone';
 
 import { DatepickerComponent } from 'src/app/shared/components/datepicker/datepicker.component';
-import { ValidatorFormControlComponent } from 'src/app/shared/components/validator-form-control/validator-form-control.component';
-import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
+import {
+  FORM_VALIDATION_ERROR_MESSAGES,
+  FormValidationErrorMessagesInterface,
+} from 'src/app/features/auth/constants/form-validation-error-messages.constant';
 import {
   ActionButtonComponent,
   LabelButtonType,
@@ -46,7 +48,6 @@ import { ErrorNotificationComponent } from 'src/app/shared/components/error-noti
     IonInput,
     IonNote,
     DatepickerComponent,
-    ValidatorFormControlComponent,
     ActionButtonComponent,
     ErrorNotificationComponent,
   ],
@@ -57,7 +58,7 @@ export class IdentificationInfoFormForCitizensBelarusComponent
   protected readonly formControls = output<Record<string, FormControl>>();
   protected controls!: Record<string, FormControl>;
   protected readonly isDatepickerOpen = signal<boolean>(false);
-  protected readonly FORM_VALIDATION_ERROR_MESSAGES =
+  protected readonly formValidationErrorMessages: FormValidationErrorMessagesInterface =
     FORM_VALIDATION_ERROR_MESSAGES;
 
   public ngOnInit(): void {
@@ -68,9 +69,16 @@ export class IdentificationInfoFormForCitizensBelarusComponent
     this.controls = {
       personalIdentificationNumber: new FormControl(null, [
         Validators.required,
+        Validators.minLength(14),
+        Validators.maxLength(14),
       ]),
       passportSeriesNumber: new FormControl(null, [Validators.required]),
-      passportIssueDate: new FormControl(null, [Validators.required]),
+      passportIssueDate: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(
+          '^([0-9]{1,2}) (января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря) [0-9]{4} г.$'
+        ),
+      ]),
       passportIssuingAuthority: new FormControl(null, [Validators.required]),
     };
 

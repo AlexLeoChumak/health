@@ -19,7 +19,10 @@ import {
   IonNote,
 } from '@ionic/angular/standalone';
 
-import { FORM_VALIDATION_ERROR_MESSAGES } from 'src/app/features/auth/constants/form-validation-error-messages.constant';
+import {
+  FORM_VALIDATION_ERROR_MESSAGES,
+  FormValidationErrorMessagesInterface,
+} from 'src/app/features/auth/constants/form-validation-error-messages.constant';
 import { checkInputValidatorUtility } from 'src/app/shared/utils/check-input-validator.utility';
 import { ErrorNotificationComponent } from 'src/app/shared/components/error-notification/error-notification.component';
 
@@ -43,7 +46,7 @@ import { ErrorNotificationComponent } from 'src/app/shared/components/error-noti
 export class EducationMedicalWorkerInfoFormComponent implements OnInit {
   protected readonly formReady = output<FormGroup>();
   protected educationMedicalWorkerInfoFormGroup!: FormGroup;
-  protected readonly FORM_VALIDATION_ERROR_MESSAGES =
+  protected readonly formValidationErrorMessages: FormValidationErrorMessagesInterface =
     FORM_VALIDATION_ERROR_MESSAGES;
 
   public ngOnInit(): void {
