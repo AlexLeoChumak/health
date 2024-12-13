@@ -7,11 +7,11 @@ import {
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-home',
+  selector: 'health-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonContent],
 })
 export class HomePage {
   constructor() {}
